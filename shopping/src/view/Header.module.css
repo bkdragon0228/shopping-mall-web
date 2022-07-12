@@ -45,6 +45,7 @@ li {
 
 .myMenu {
     margin: 0;
+    margin-bottom: 2rem;
 }
 
 .myMenu a {

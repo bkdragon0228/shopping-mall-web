@@ -1,12 +1,79 @@
-.mainImg {
-    margin-top: 2rem;
-    display: flex;
-    justify-content: center;
-    width: 100%;
-
-}
-.mainImg img {
-    width: 100%;
+.slider {
+    width: 1000px;
+    height: 370px;
     position: relative;
-    float: left;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.slider input[type=radio]{
+    display: none;
+}
+
+.imagebox {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.imagebox img {
+    width: 1000px;
+    height: 370px;
+    object-fit: cover;
+}
+.imagebox li{
+    position: absolute;
+
+    left: 1000px;
+    transition-delay: 1s;
+
+    padding: 0;
+    margin: 0;
+}
+
+.bullets {
+    position: absolute;
+    display: flex;
+    flex-direction: column-reverse;
+    right: 10px;
+    transform: translateX(-50%);
+    bottom: 20px;
+    z-index: 2;
+}
+
+.bullets label{
+    display: inline-block;
+    border-radius: 50%;
+    background-color: rgba(88, 84, 84, 0.55);
+    width: 10px;
+    height: 10px;
+    margin-top: 5px;
+    cursor: pointer;
+}
+
+.slider input[type=radio]:nth-child(1):checked~.bullets>label:nth-child(1){
+    background-color: rgb(255, 255, 255);
+}
+.slider input[type=radio]:nth-child(2):checked~.bullets>label:nth-child(2){
+    background-color: rgb(255, 255, 255);
+}
+.slider input[type=radio]:nth-child(3):checked~.bullets>label:nth-child(3){
+    background-color: rgb(255, 255, 255);
+}
+
+
+.slider input[type=radio]:nth-child(1):checked~.imagebox>li:nth-child(1){
+    left: 0;
+    transition: 0.5s;
+    z-index:1;
+}
+.slider input[type=radio]:nth-child(2):checked~.imagebox>li:nth-child(2){
+    left: 0;
+    transition: 0.5s;
+    z-index:1;
+}
+.slider input[type=radio]:nth-child(3):checked~.imagebox>li:nth-child(3){
+    left: 0;
+    transition: 0.5s;
+    z-index:1;
 }
