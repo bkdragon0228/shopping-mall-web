@@ -1,0 +1,12 @@
+.mainImg {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+
+}
+.mainImg img {
+    width: 100%;
+    position: relative;
+    float: left;
+}
