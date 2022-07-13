@@ -17,7 +17,7 @@ const ImageBox = styled.ul`
     padding: 0;
     width: 100%;
     display: flex;
-    transition: all 0.5s ease-in-out;
+    transition: ${(props) => (!props.count ? '' : 'all 0.5s ease-in-out')};
     transform: ${(props) => 'translateX(-' + props.count * 1000 + 'px)'};
 `;
 const ImageList = styled.li`
@@ -42,9 +42,14 @@ const Label = styled.label`
 `;
 
 const ImgSlider = () => {
-    const TOTAL_SLIDES = 2;
+    const TOTAL_SLIDES = 3;
     const imgLength = 1000;
-    const IMG = ['images/1.png', 'images/2.png', 'images/3.png'];
+    const IMG = [
+        'images/1.png',
+        'images/2.png',
+        'images/3.png',
+        'images/1.png',
+    ];
     const [curruntIdx, setCurrentIdx] = useState(0);
     const [count, setCount] = useState(0);
     const slideRef = useRef(null);
