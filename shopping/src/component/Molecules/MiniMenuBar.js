@@ -5,16 +5,16 @@ import Menu from '../Atoms/Menu';
 const MiniMenuBar = () => {
     return (
         <div>
-            <Menu name="login" />
-            <Menu name="join" />
-            <Menu name="cart" />
-            <Menu name="mypage" />
-            <Menu name="notice" />
-            <Menu name="입고지연" />
-            <Menu name="q & a" />
-            <Menu name="review" />
-            <Menu name="event" />
-            <Menu name="검색" />
+            <Menu name="login" fontSize="12px" fontWeight="600" />
+            <Menu name="join" fontSize="12px" fontWeight="600" />
+            <Menu name="cart" fontSize="12px" fontWeight="600" />
+            <Menu name="mypage" fontSize="12px" fontWeight="600" />
+            <Menu name="notice" fontSize="12px" fontWeight="600" />
+            <Menu name="입고지연" fontSize="12px" fontWeight="600" />
+            <Menu name="q & a" fontSize="12px" fontWeight="600" />
+            <Menu name="review" fontSize="12px" fontWeight="600" />
+            <Menu name="event" fontSize="12px" fontWeight="600" />
+            <Menu name="검색" fontSize="12px" fontWeight="600" />
         </div>
     );
 };
