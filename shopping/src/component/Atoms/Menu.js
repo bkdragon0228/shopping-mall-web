@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 const A = styled.a`
     margin-left: 1rem;
+    margin-top: 2rem;
     margin-bottom: 2rem;
     font-size: ${(props) => props.fontSize || `14px`};
     color: #000;

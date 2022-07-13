@@ -104,8 +104,8 @@ const ImgSlider = () => {
                     <Label for="slider3">&nbsp;</Label>
                 </Bullets>
             </Container>
-            <Button onClick={prevSlide}>prev</Button>
-            <Button onClick={nextSlide}>next</Button>
+            {/* <Button onClick={prevSlide}>prev</Button>
+            <Button onClick={nextSlide}>next</Button> */}
         </>
     );
 };
