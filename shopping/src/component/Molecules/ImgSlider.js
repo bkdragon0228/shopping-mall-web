@@ -17,6 +17,8 @@ const ImageBox = styled.ul`
     padding: 0;
     width: 100%;
     display: flex;
+    transition: all 0.5s ease-in-out;
+    transform: ${(props) => 'translateX(-' + props.count * 1000 + 'px)'};
 `;
 const ImageList = styled.li`
     list-style: none;
@@ -41,8 +43,10 @@ const Label = styled.label`
 
 const ImgSlider = () => {
     const TOTAL_SLIDES = 2;
+    const imgLength = 1000;
     const IMG = ['images/1.png', 'images/2.png', 'images/3.png'];
     const [curruntIdx, setCurrentIdx] = useState(0);
+    const [count, setCount] = useState(0);
     const slideRef = useRef(null);
 
     const nextSlide = () => {
@@ -61,19 +65,28 @@ const ImgSlider = () => {
         }
     };
 
-    useEffect(() => {
-        console.log(curruntIdx);
-        slideRef.current.style.transition = `all 0.5s ease-in-out`;
-        slideRef.current.style.transform = `translateX(-${curruntIdx}000px)`;
-    }, [curruntIdx]);
+    // useEffect(() => {
+    //     console.log(curruntIdx);
+    //     slideRef.current.style.transition = `all 0.5s ease-in-out`;
+    //     slideRef.current.style.transform = `translateX(-${curruntIdx}000px)`;
+    // }, [curruntIdx]);
 
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setCount((prev) => (prev === TOTAL_SLIDES ? 0 : prev + 1));
+        }, 3000);
+
+        return () => {
+            clearInterval(timer);
+        };
+    }, [count]);
     return (
         <>
             <Container>
                 <Input type="radio" name="slider" id="slider1" />
                 <Input type="radio" name="slider" id="slider2" />
                 <Input type="radio" name="slider" id="slider3" />
-                <ImageBox ref={slideRef}>
+                <ImageBox ref={slideRef} count={count}>
                     {IMG.map((ele, idx) => (
                         <ImageList key={idx}>
                             <Image src={ele} />
