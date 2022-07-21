@@ -50,48 +50,33 @@ const ImgSlider = () => {
         'images/3.png',
         'images/1.png',
     ];
-    const [curruntIdx, setCurrentIdx] = useState(0);
+    const sliders = ['slider1', 'slider2', 'slider3'];
     const [count, setCount] = useState(0);
-    const slideRef = useRef(null);
-
-    const nextSlide = () => {
-        if (curruntIdx >= TOTAL_SLIDES) {
-            setCurrentIdx(0);
-        } else {
-            setCurrentIdx((prev) => prev + 1);
-        }
-    };
-
-    const prevSlide = () => {
-        if (curruntIdx === 0) {
-            setCurrentIdx(TOTAL_SLIDES);
-        } else {
-            setCurrentIdx((prev) => prev - 1);
-        }
-    };
-
-    // useEffect(() => {
-    //     console.log(curruntIdx);
-    //     slideRef.current.style.transition = `all 0.5s ease-in-out`;
-    //     slideRef.current.style.transform = `translateX(-${curruntIdx}000px)`;
-    // }, [curruntIdx]);
+    const boxListRef = useRef({});
 
     useEffect(() => {
         const timer = setInterval(() => {
             setCount((prev) => (prev === TOTAL_SLIDES ? 0 : prev + 1));
         }, 3000);
 
+        if (count < TOTAL_SLIDES) {
+            boxListRef.current[
+                count
+            ].style.backgroundColor = `rgba(0, 0, 0, 0.55)`;
+        }
+
         return () => {
             clearInterval(timer);
         };
     }, [count]);
+
     return (
         <>
             <Container>
-                <Input type="radio" name="slider" id="slider1" />
-                <Input type="radio" name="slider" id="slider2" />
-                <Input type="radio" name="slider" id="slider3" />
-                <ImageBox ref={slideRef} count={count}>
+                <Input type="radio" name="slider" id="slider1" hide />
+                <Input type="radio" name="slider" id="slider2" hide />
+                <Input type="radio" name="slider" id="slider3" hide />
+                <ImageBox count={count}>
                     {IMG.map((ele, idx) => (
                         <ImageList key={idx}>
                             <Image src={ele} />
@@ -99,9 +84,15 @@ const ImgSlider = () => {
                     ))}
                 </ImageBox>
                 <Bullets>
-                    <Label for="slider1">&nbsp;</Label>
-                    <Label for="slider2">&nbsp;</Label>
-                    <Label for="slider3">&nbsp;</Label>
+                    {sliders.map((e, i) => (
+                        <Label
+                            ref={(ref) => (boxListRef.current[i] = ref)}
+                            for={e}
+                            key={i}
+                        >
+                            &nbsp;
+                        </Label>
+                    ))}
                 </Bullets>
             </Container>
             {/* <Button onClick={prevSlide}>prev</Button>
