@@ -3,6 +3,9 @@ import Logo from '../Atoms/Logo';
 import styled from 'styled-components';
 import Block from '../Atoms/Block';
 import Button from '../Atoms/Button';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { registerUser } from '../../_action/user_action';
 const RegisterDiv = styled.div`
     width: 100%;
     flex-direction: column;
@@ -21,6 +24,9 @@ const RegisterPage = () => {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
 
+    const dispatch = useDispatch();
+    const navi = useNavigate();
+
     const handleSubmit = (e) => {
         e.preventDefault();
 
@@ -33,6 +39,14 @@ const RegisterPage = () => {
             email,
             password,
         };
+
+        dispatch(registerUser(body)).then((res) => {
+            if (res.payload.succees) {
+                navi('/login');
+            } else {
+                alert('fail to sign up');
+            }
+        });
     };
 
     const HandleName = (e) => {

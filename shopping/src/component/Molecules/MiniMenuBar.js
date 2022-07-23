@@ -1,12 +1,11 @@
 import React from 'react';
-import styled from 'styled-components';
 import Menu from '../Atoms/Menu';
 
 const MiniMenuBar = () => {
     return (
         <div>
-            <Menu name="login" fontSize="12px" fontWeight="600" />
-            <Menu name="join" fontSize="12px" fontWeight="600" />
+            <Menu name="login" fontSize="12px" fontWeight="600" to="/login" />
+            <Menu name="join" fontSize="12px" fontWeight="600" to="/register" />
             <Menu name="cart" fontSize="12px" fontWeight="600" />
             <Menu name="mypage" fontSize="12px" fontWeight="600" />
             <Menu name="notice" fontSize="12px" fontWeight="600" />

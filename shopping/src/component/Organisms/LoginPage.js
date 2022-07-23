@@ -6,6 +6,8 @@ import Button from '../Atoms/Button';
 import { useNavigate } from 'react-router-dom';
 
 import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { loginUser } from '../../_action/user_action';
 
 const LoginComponent = styled.div`
     position: relative;
@@ -28,6 +30,7 @@ const LoginPage = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
+    const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const handleSubmit = (e) => {
@@ -37,13 +40,14 @@ const LoginPage = () => {
             email: email,
             password: password,
         };
-        axios
-            .post('http://127.0.0.1:3000/api/auth/login', body)
-            .then((res) => {
-                console.log(res);
+
+        dispatch(loginUser(body)).then((res) => {
+            if (res.payload.loginSuccess) {
                 navigate('/');
-            })
-            .catch((err) => console.err(err));
+            } else {
+                alert('fail to sign in');
+            }
+        });
     };
 
     const HandleEmail = (e) => {
