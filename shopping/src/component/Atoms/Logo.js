@@ -9,7 +9,9 @@ const Logo = () => {
 
     return (
         <div>
-            <Img src="images/bkmall-logo.png"></Img>
+            <a href="/">
+                <Img src="images/bkmall-logo.png"></Img>
+            </a>
         </div>
     );
 };
