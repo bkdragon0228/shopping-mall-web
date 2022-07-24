@@ -20,7 +20,6 @@ const MiniMenuBar = () => {
     };
 
     if (user.userData && !user.userData.isAuth) {
-        // 아직 유저데이터가 없어서 로그아웃이 뜸
         return (
             <div>
                 <Menu
