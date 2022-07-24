@@ -1,7 +1,7 @@
 // user와 관련된 액션
 
 import axios from 'axios';
-import { LOGIN_USER, REGISTER_USER, AUTH_USER } from './types';
+import { LOGIN_USER, REGISTER_USER, AUTH_USER, LOGOUT_USER } from './types';
 
 // 액션 함수
 export function loginUser(dataToSubmit) {
@@ -11,6 +11,15 @@ export function loginUser(dataToSubmit) {
 
     return {
         type: LOGIN_USER,
+        payload: response,
+    };
+}
+
+export function logoutUser() {
+    const response = axios.get('api URI').then((res) => res.data);
+
+    return {
+        type: LOGOUT_USER,
         payload: response,
     };
 }

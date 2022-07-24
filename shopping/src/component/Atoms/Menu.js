@@ -16,7 +16,7 @@ const A = styled.a`
     letter-spacing: 1px;
 `;
 
-const Menu = ({ name, to, ...rest }) => {
+const Menu = ({ name, to, onClick, ...rest }) => {
     return (
         <A href={to} {...rest}>
             {name}
