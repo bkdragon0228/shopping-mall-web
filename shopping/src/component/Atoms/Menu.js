@@ -18,7 +18,7 @@ const A = styled.a`
 
 const Menu = ({ name, to, onClick, ...rest }) => {
     return (
-        <A href={to} {...rest}>
+        <A href={to} {...rest} onClick={onClick}>
             {name}
         </A>
     );

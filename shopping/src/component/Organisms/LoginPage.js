@@ -68,12 +68,14 @@ const LoginPage = () => {
                 <input
                     type="email"
                     placeholder="아이디"
+                    value={email}
                     onChange={HandleEmail}
                 />
                 <label>비밀번호</label>
                 <input
                     type="password"
                     placeholder="비밀번호"
+                    value={password}
                     onChange={HandlePassword}
                 />
                 <Button>로그인</Button>

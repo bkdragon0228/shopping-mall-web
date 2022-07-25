@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const { User } = require('../models/user');
 
+const { auth } = require('../middleware/auth');
+
 const cookieParser = require('cookie-parser');
 router.use(cookieParser());
 
@@ -42,4 +44,23 @@ router.post('/login', (req, res) => {
     });
 });
 
+router.get('/auth', auth, (req, res) => {
+    res.status(200).json({
+        _id: req.user._id,
+        isAdmin: req.user.role === 0 ? false : true,
+        isAuth: true,
+        email: req.user.email,
+        role: req.user.role,
+        image: req.user.image,
+    });
+});
+
+router.get('/logout', auth, (req, res) => {
+    User.findOneAndUpdate({ _id: req.user._id }, { token: '' }, (err, user) => {
+        if (err) return res.json({ success: false, err });
+        return res.status(200).send({
+            success: true,
+        });
+    });
+});
 module.exports = router;

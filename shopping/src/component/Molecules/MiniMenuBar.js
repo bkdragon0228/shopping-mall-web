@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -10,11 +11,12 @@ const MiniMenuBar = () => {
     const navi = useNavigate();
 
     const logoutHandler = () => {
-        dispatch(logoutUser).then((res) => {
-            if (res.payload.success) {
+        axios.get('/api/users/logout').then((res) => {
+            if (res.data.success) {
+                alert('로그아웃 성공!');
                 navi('/login');
             } else {
-                alert('fail to sign out');
+                alert('로그아웃에 실패했습니다.');
             }
         });
     };
