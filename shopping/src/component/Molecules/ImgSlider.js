@@ -54,16 +54,20 @@ const ImgSlider = () => {
     const [count, setCount] = useState(0);
     const boxListRef = useRef({});
 
+    const bool = useRef(false);
     useEffect(() => {
-        const timer = setInterval(() => {
-            setCount((prev) => (prev === TOTAL_SLIDES ? 0 : prev + 1));
-        }, 3000);
-
-        if (count < TOTAL_SLIDES) {
-            boxListRef.current[
-                count
-            ].style.backgroundColor = `rgba(0, 0, 0, 0.55)`;
-        }
+        const timer = setInterval(
+            () => {
+                if (count < TOTAL_SLIDES) {
+                    bool.current = false;
+                    setCount((prev) => prev + 1);
+                } else {
+                    bool.current = true;
+                    setCount(0);
+                }
+            },
+            bool.current ? 0 : 2500
+        );
 
         return () => {
             clearInterval(timer);
