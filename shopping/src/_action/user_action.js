@@ -6,7 +6,7 @@ import { LOGIN_USER, REGISTER_USER, AUTH_USER, LOGOUT_USER } from './types';
 // 액션 함수
 export function loginUser(dataToSubmit) {
     const response = axios
-        .post('api URI', dataToSubmit)
+        .post('/api/user/login', dataToSubmit)
         .then((res) => res.data);
 
     return {
@@ -16,7 +16,7 @@ export function loginUser(dataToSubmit) {
 }
 
 export function logoutUser() {
-    const response = axios.get('api URI').then((res) => res.data);
+    const response = axios.get('/api/user/logout').then((res) => res.data);
 
     return {
         type: LOGOUT_USER,
@@ -26,7 +26,7 @@ export function logoutUser() {
 
 export function registerUser(dataToSubmit) {
     const response = axios
-        .post('api URI', dataToSubmit)
+        .post('/api/user/register', dataToSubmit)
         .then((res) => res.data);
 
     return {
@@ -36,7 +36,7 @@ export function registerUser(dataToSubmit) {
 }
 
 export function auth() {
-    const response = axios.get('api URI').then((res) => res.data);
+    const response = axios.get('/api/user/auth').then((res) => res.data);
 
     return {
         type: AUTH_USER,

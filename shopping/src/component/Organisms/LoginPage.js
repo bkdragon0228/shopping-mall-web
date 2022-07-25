@@ -5,7 +5,6 @@ import Logo from '../Atoms/Logo';
 import Button from '../Atoms/Button';
 import { useNavigate } from 'react-router-dom';
 
-import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { loginUser } from '../../_action/user_action';
 
