@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import ClothesMain from '../Molecules/ClothesMain';
 import MainMenu from '../Molecules/MainMenu';
 
+import { Col, Divider, Row } from 'antd';
+
 const BodyComponent = styled.div`
     padding: 0;
     width: 1000px;
@@ -12,27 +14,11 @@ const BodyComponent = styled.div`
     justify-content
 `;
 const MainBody = () => {
+    // 상품 렌딩할곳
     return (
         <BodyComponent>
             <MainMenu />
-            <div style={{ display: 'flex', justifyContent: 'space-around' }}>
-                <ClothesMain />
-                <ClothesMain />
-                <ClothesMain />
-                <ClothesMain />
-            </div>
-            <div style={{ display: 'flex', justifyContent: 'space-around' }}>
-                <ClothesMain />
-                <ClothesMain />
-                <ClothesMain />
-                <ClothesMain />
-            </div>
-            <div style={{ display: 'flex', justifyContent: 'space-around' }}>
-                <ClothesMain />
-                <ClothesMain />
-                <ClothesMain />
-                <ClothesMain />
-            </div>
+            <Row gutter={[16, 16]}></Row>
         </BodyComponent>
     );
 };

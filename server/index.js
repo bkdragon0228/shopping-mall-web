@@ -11,6 +11,10 @@ app.use(bodyParser.json());
 
 // 라우트 분리
 app.use('/api/users', require('./routes/user'));
+app.use('/api/products', require('./routes/product'));
+
+// 정적인 파일 제공
+app.use('/uploads', express.static('uploads'));
 
 mongoose
     .connect(config.mongoURI, {})

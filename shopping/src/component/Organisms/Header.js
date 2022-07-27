@@ -6,7 +6,7 @@ import MiniMenuBar from '../Molecules/MiniMenuBar';
 import ImgSlider from '../Molecules/ImgSlider';
 
 const Header = () => {
-    const Header = styled.div`
+    const HeaderComponent = styled.div`
         padding: 0;
         width: 1000px;
         margin: 0 auto;
@@ -17,11 +17,11 @@ const Header = () => {
     `;
     return (
         <>
-            <Header>
+            <HeaderComponent>
                 <Logo />
                 <MenuBar />
                 <MiniMenuBar />
-            </Header>
+            </HeaderComponent>
             <ImgSlider />
         </>
     );
