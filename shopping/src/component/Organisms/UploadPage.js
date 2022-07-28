@@ -1,7 +1,9 @@
 import axios from 'axios';
 import React, { useState } from 'react';
-
+import { useDispatch } from 'react-redux';
 import Dropzone from 'react-dropzone';
+import { uploadProduct } from '../../_action/product_action';
+import { useNavigate } from 'react-router-dom';
 
 const UploadPage = () => {
     const [name, setName] = useState('');
@@ -9,6 +11,9 @@ const UploadPage = () => {
     const [price, setPrice] = useState(0);
 
     const [images, setImages] = useState([]); // 이미지 받아올 값
+
+    const dispatch = useDispatch();
+    const navigator = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -19,13 +24,13 @@ const UploadPage = () => {
             price,
             images,
         };
-
-        console.log(body);
-        // axios.post('/api/products/upload', body).then((res) => {
-        //     if (res.data.success) {
-        //     } else {
-        //     }
-        // });
+        dispatch(uploadProduct(body)).then((res) => {
+            if (res.payload.success) {
+                navigator('/');
+            } else {
+                alert('상품 업로드에 실패하였습니다.');
+            }
+        });
     };
 
     const nameChangeHandler = (e) => {

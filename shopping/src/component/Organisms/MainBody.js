@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import ClothesMain from '../Molecules/ClothesMain';
 import MainMenu from '../Molecules/MainMenu';
 
-import { Col, Divider, Row } from 'antd';
+import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { getProduct } from '../../_action/product_action';
 
 const BodyComponent = styled.div`
     padding: 0;
@@ -14,11 +16,25 @@ const BodyComponent = styled.div`
     justify-content
 `;
 const MainBody = () => {
+    const dispatch = useDispatch();
+    const [products, setProducts] = useState([]);
+    useEffect(() => {
+        dispatch(getProduct()).then((res) => {
+            if (res.payload.success) {
+                setProducts(res.payload.productsInfo);
+            } else {
+                alert('상품 정보를 가져오지 못했습니다.');
+            }
+        });
+
+        // console.log(products);
+    }, []);
+
     // 상품 렌딩할곳
     return (
         <BodyComponent>
             <MainMenu />
-            <Row gutter={[16, 16]}></Row>
+            <ClothesMain list={products} />
         </BodyComponent>
     );
 };

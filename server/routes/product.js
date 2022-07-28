@@ -2,6 +2,9 @@ const express = require('express');
 const router = express.Router();
 const multer = require('multer');
 
+const { Product } = require('../models/product');
+const { auth } = require('../middleware/auth');
+
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         //저장위치
@@ -13,7 +16,7 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage: storage }).single('file');
-
+// 이미지 서버에 저장
 router.post('/images', (req, res) => {
     upload(req, res, function (err) {
         if (err) {
@@ -27,6 +30,28 @@ router.post('/images', (req, res) => {
     });
 });
 
-router.post('/upload', (req, res) => {});
+// 데이터 업로드
+router.post('/upload', (req, res) => {
+    const product = new Product(req.body);
 
+    product.save((err) => {
+        if (err) return res.status(400).json({ success: false, err });
+
+        return res.status(200).json({ success: true });
+    });
+});
+
+router.get('/products', (req, res) => {
+    Product.find()
+        .populate('writer')
+        .exec((err, productsInfo) => {
+            if (err) return res.status(400).json({ success: false, err });
+
+            return res.status(200).json({
+                success: true,
+                productsInfo,
+                postSize: productsInfo.length,
+            });
+        });
+});
 module.exports = router; // 이거 자꾸 까먹네.

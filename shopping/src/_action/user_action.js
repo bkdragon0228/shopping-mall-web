@@ -5,9 +5,7 @@ import { LOGIN_USER, REGISTER_USER, AUTH_USER, LOGOUT_USER } from './types';
 
 // 액션 함수
 export function loginUser(dataToSubmit) {
-    const response = axios
-        .post('/api/users/login', dataToSubmit)
-        .then((res) => res.data);
+    const response = axios.post('/api/users/login', dataToSubmit).then((res) => res.data);
 
     return {
         type: LOGIN_USER,
@@ -25,9 +23,7 @@ export function logoutUser() {
 }
 
 export function registerUser(dataToSubmit) {
-    const response = axios
-        .post('/api/users/register', dataToSubmit)
-        .then((res) => res.data);
+    const response = axios.post('/api/users/register', dataToSubmit).then((res) => res.data);
 
     return {
         type: REGISTER_USER,
