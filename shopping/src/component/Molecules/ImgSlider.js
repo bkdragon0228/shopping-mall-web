@@ -44,12 +44,7 @@ const Label = styled.label`
 const ImgSlider = () => {
     const TOTAL_SLIDES = 3;
     const imgLength = 1000;
-    const IMG = [
-        'images/1.png',
-        'images/2.png',
-        'images/3.png',
-        'images/1.png',
-    ];
+    const IMG = ['images/1.png', 'images/2.png', 'images/3.png', 'images/1.png'];
     const sliders = ['slider1', 'slider2', 'slider3'];
     const [count, setCount] = useState(0);
     const boxListRef = useRef({});
@@ -82,9 +77,9 @@ const ImgSlider = () => {
                 {/* <Input type="radio" name="slider" id="slider1" hide />
                 <Input type="radio" name="slider" id="slider2" hide />
                 <Input type="radio" name="slider" id="slider3" hide /> */}
-                <input type="radio" name="slider" id="slider1" checked />
+                {/* <input type="radio" name="slider" id="slider1" checked />
                 <input type="radio" name="slider" id="slider2" />
-                <input type="radio" name="slider" id="slider3" />
+                <input type="radio" name="slider" id="slider3" /> */}
                 <ImageBox count={count}>
                     {IMG.map((ele, idx) => (
                         <ImageList key={idx}>
@@ -94,12 +89,7 @@ const ImgSlider = () => {
                 </ImageBox>
                 <Bullets>
                     {sliders.map((e, i) => (
-                        <Label
-                            onClick={lableHandler}
-                            ref={(ref) => (boxListRef.current[i] = ref)}
-                            for={e}
-                            key={i}
-                        >
+                        <Label onClick={lableHandler} ref={(ref) => (boxListRef.current[i] = ref)} for={e} key={i}>
                             &nbsp;
                         </Label>
                     ))}

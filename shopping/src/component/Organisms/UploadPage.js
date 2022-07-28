@@ -19,7 +19,7 @@ const UploadPage = () => {
         e.preventDefault();
 
         let body = {
-            name,
+            title: name,
             description,
             price,
             images,

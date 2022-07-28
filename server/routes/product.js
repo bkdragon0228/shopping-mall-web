@@ -41,9 +41,14 @@ router.post('/upload', (req, res) => {
     });
 });
 
-router.get('/products', (req, res) => {
+router.post('/products', (req, res) => {
+    let skip = req.body.skip ? parseInt(req.body.skip) : 0;
+    let limit = req.body.limit ? parseInt(req.body.limit) : 16;
+
     Product.find()
         .populate('writer')
+        .skip(skip)
+        .limit(limit)
         .exec((err, productsInfo) => {
             if (err) return res.status(400).json({ success: false, err });
 

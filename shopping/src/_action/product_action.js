@@ -10,8 +10,8 @@ export function uploadProduct(dataToSubmit) {
     };
 }
 
-export function getProduct() {
-    const responce = axios.get('/api/products/products').then((res) => res.data);
+export function getProduct(dataToSubmit) {
+    const responce = axios.post('/api/products/products', dataToSubmit).then((res) => res.data);
 
     return {
         type: GET_PRODUCT,

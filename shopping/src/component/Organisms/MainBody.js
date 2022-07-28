@@ -3,9 +3,11 @@ import styled from 'styled-components';
 import ClothesMain from '../Molecules/ClothesMain';
 import MainMenu from '../Molecules/MainMenu';
 
-import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { getProduct } from '../../_action/product_action';
+
+import { Input } from 'antd';
+const { Search } = Input;
 
 const BodyComponent = styled.div`
     padding: 0;
@@ -15,11 +17,21 @@ const BodyComponent = styled.div`
     flex-direction: column;
     justify-content
 `;
+
 const MainBody = () => {
     const dispatch = useDispatch();
     const [products, setProducts] = useState([]);
+    const [skip, setSkip] = useState(10);
+    const [limit, setLimit] = useState(16);
+
+    const [searchValue, setSearchValue] = useState('');
+
     useEffect(() => {
-        dispatch(getProduct()).then((res) => {
+        let body = {
+            skip: skip,
+            limit: limit,
+        };
+        dispatch(getProduct(body)).then((res) => {
             if (res.payload.success) {
                 setProducts(res.payload.productsInfo);
             } else {
@@ -30,10 +42,17 @@ const MainBody = () => {
         // console.log(products);
     }, []);
 
-    // 상품 렌딩할곳
+    const handleInput = (e) => {
+        setSearchValue(e.target.value);
+    };
     return (
         <BodyComponent>
             <MainMenu />
+
+            <form style={{ display: 'flex', justifyContent: 'flex-end', margin: '10px' }}>
+                <Search placeholder="input search text" value={searchValue} onChange={handleInput} enterButton />
+            </form>
+
             <ClothesMain list={products} />
         </BodyComponent>
     );

@@ -1,24 +1,53 @@
 import React from 'react';
-import styled from 'styled-components';
 import Image from '../Atoms/Image';
-import Menu from '../Atoms/Menu';
+import styled from 'styled-components';
 
 import { Row, Col } from 'antd';
 
+const GridContainer = styled.div`
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    row-gap: 10px;
+    column-gap: 10px;
+`;
+const GridItem = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+`;
+
+// const ImageComponent = styled(Image)`
+
+// `
 const ClothesMain = ({ list }) => {
-    console.log(list);
+    // console.log(list[0].images[0]);
+
+    const renderImage = (images) => {
+        if (images.length > 0) {
+            let image = images[0];
+            return `http://localhost:5000/${image}`;
+        }
+    };
     const rendingProduct = () =>
         list &&
-        list.map((product) => (
-            <Col lg={6} xs={24} key={product._id}>
-                <image src={`http://localhost:5000/${product.images[0]}`}></image>
+        list.map((product, index) => (
+            <GridItem key={index}>
+                <Image src={renderImage(product.images)} width={'200px'} height={`250px`} />
+                <br />
                 <br />
                 {product.title}
                 <br />
+                <br />
                 {`KRW ${product.price} `}
-            </Col>
+            </GridItem>
         ));
-    return <Row>{rendingProduct()}</Row>;
+    return (
+        // <Row gutter={[16, 16]} style={{ flexDirection: 'row' }}>
+        //     {rendingProduct()}
+        // </Row>
+        <GridContainer>{rendingProduct()}</GridContainer>
+    );
 };
 
 export default ClothesMain;
